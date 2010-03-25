@@ -1,0 +1,24 @@
+{
+	faonVersion: "1.0",
+	owner: "http://tacasi.vo-id.org/",
+	target: "http://github.com/tacasi/notepad/raw/master/",
+	top: "/index.html",
+	signature: "fe1273b0b44d325d6e57a59aa144bef7f1fcce6e37a1c259a4ff76df64013d43f9afe536687eebe7393ebaccb4c491b5652544429d6b57c63e55510dc9e7e30f",
+
+	title: "メモ帳",
+	version: "1.0.0",
+	description: "メモ帳は文字情報を編集するためのシンプルなテキストエディタです。ワードプロセッサではないため、表現の修飾などを行うことはできません。",
+	icon: "/images/notepad.png",
+	icon_48: "/images/notepad_48x48.png",
+		
+	hints: {
+		window:{ 
+			maximizable: true,
+			minimizable: true,
+			resizable: true,
+			draggable: true,
+			width: 640,
+			height: 480
+		}
+	}
+}
