@@ -1,8 +1,8 @@
 Ext.ns("FlairyNotepad.Toolbar");
 // ===================================================================
 Flairy.require([
-  {"FlairyNotepad.Menu.ResMenu": "/javascripts/menu/res_menu.js"},
-  {"FlairyNotepad.Menu.EditMenu": "/javascripts/menu/edit_menu.js"}
+  {"FlairyNotepad.Menu.ResMenu": "javascripts/menu/res_menu.js"},
+  {"FlairyNotepad.Menu.EditMenu": "javascripts/menu/edit_menu.js"}
 ])(function(){
 // ===================================================================
 FlairyNotepad.Toolbar.MenuBar = Ext.extend(Ext.Toolbar,{

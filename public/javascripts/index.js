@@ -1,8 +1,8 @@
 Ext.ns("FlairyNotepad");
 // ===================================================================
 Flairy.require([
-  {"FlairyNotepad.Application": "/javascripts/application.js"},
-  {"FlairyNotepad.Panel.MainPanel": "/javascripts/panel/main_panel.js"}
+  {"FlairyNotepad.Application": "javascripts/application.js"},
+  {"FlairyNotepad.Panel.MainPanel": "javascripts/panel/main_panel.js"}
 ])(function(){
 // ===================================================================
 

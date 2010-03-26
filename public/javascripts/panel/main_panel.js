@@ -2,8 +2,8 @@ Ext.ns("FlairyNotepad.Panel");
 // ===================================================================
 Flairy.require([
   {
-  	"FlairyNotepad.Field.TextArea": "/javascripts/field/text_area.js",
-  	"FlairyNotepad.Toolbar.MenuBar": "/javascripts/toolbar/menu_bar.js"
+  	"FlairyNotepad.Field.TextArea": "javascripts/field/text_area.js",
+  	"FlairyNotepad.Toolbar.MenuBar": "javascripts/toolbar/menu_bar.js"
   }
 ])(function(){
 // ===================================================================
