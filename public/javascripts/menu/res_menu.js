@@ -1,26 +1,10 @@
 Ext.ns("FlairyNotepad.Menu");
-// ===================================================================
-Flairy.require([
-])(function(){
-// ===================================================================
-FlairyNotepad.Menu.ResMenu = Ext.extend(Ext.menu.Menu,{
-	constructor: function(config) {
-		FlairyNotepad.Menu.ResMenu.superclass.constructor.call(this, {
-			shadow: true,
-			items: [
-				new Ext.menu.Item({
-					text: "新規",
-					handler: function() {
-						// カーネルのexec機能をを呼び出す。
-						new Flairy.Msg.Exec("https://notepad.flairy.jp").post();
-					}
-				}),
-				new Ext.menu.Item({
-					text: "開く...",
-					handler: function(){
-						var w = new Flame.Dialog.Open({
+
+function showOpenDialog(xuri) {
+	var w = new Flame.Dialog.Open({
 							singleSelect: true,
 							multiSelect: false,
+							defaultUri: xuri,
 							submit: function(dlg, euri) {
 								var data = Ext.getCmp("textarea").getValue();
 								if(!FlairyNotepad.currentDocURI && data === "") {		// 未保存かつ中身が空の場合だけ、内部に読み込む
@@ -58,7 +42,30 @@ FlairyNotepad.Menu.ResMenu = Ext.extend(Ext.menu.Menu,{
 								return true;	// 正常終了
 							}
 						});
-						w.show(this.getEl());
+						w.show();
+	
+}
+
+// ===================================================================
+Flairy.require([
+])(function(){
+// ===================================================================
+FlairyNotepad.Menu.ResMenu = Ext.extend(Ext.menu.Menu,{
+	constructor: function(config) {
+		FlairyNotepad.Menu.ResMenu.superclass.constructor.call(this, {
+			shadow: true,
+			items: [
+				new Ext.menu.Item({
+					text: "新規",
+					handler: function() {
+						// カーネルのexec機能をを呼び出す。
+						new Flairy.Msg.Exec("https://notepad.flairy.jp").post();
+					}
+				}),
+				new Ext.menu.Item({
+					text: "開く...",
+					handler: function(){
+						showOpenDialog();
 					}
 				}),
 				"-",

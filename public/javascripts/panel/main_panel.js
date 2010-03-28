@@ -23,9 +23,6 @@ FlairyNotepad.Panel.MainPanel = Ext.extend(Ext.Panel,{
 		if(app.getParams().args){
 			this.handleArgs(app.getParams().args);
 		}
-		
-
-		
 	},
 	handleArgs: function(args) {
 		Ext.each(args.split(/[ \t]/), function(item, index, allItems){
@@ -44,6 +41,27 @@ FlairyNotepad.Panel.MainPanel = Ext.extend(Ext.Panel,{
 		
 		var u = new Flairy.Uri(arg).httpsize();
 		var euri = u.path.replace("/~~flairy~~/res/", "");
+		
+		
+		// HEADで種類を調べる
+	Flairy.Ajax.head("/~~flairy~~/res/" + euri,{
+		success: function(resp, opt) {
+			var ct = resp.getResponseHeader("Content-Type");
+			if (ct === "application/x-collection") {
+				this.openCol(euri);
+			} else {
+				this.openRes(euri);
+			}
+		},
+		failure: function(resp, opt) {
+			failback(resp);
+		},
+		disableCaching: true,
+		scope: this
+	});		
+
+	},
+	openRes: function(euri){
 		read_res(euri, 
 			function(data) {
 				Ext.getCmp("textarea").originalValue = data;
@@ -51,7 +69,8 @@ FlairyNotepad.Panel.MainPanel = Ext.extend(Ext.Panel,{
 				FlairyNotepad.currentDocURI = euri;
 				app.setTitle("メモ帳 - " + FlairyNotepad.currentDocURI);
 			},
-			function(resp){
+			function(resp, opt){
+				// 対象がディレクトリであった可能性を検討
 				var msg = Flairy.Res.Message[resp.status];
 				if(!msg) {
 					msg = "原因は不明です."
@@ -60,8 +79,13 @@ FlairyNotepad.Panel.MainPanel = Ext.extend(Ext.Panel,{
 					(new Flairy.Msg.Kill(Flairy.Kernel.pid)).post(this.onShutdown);
 				});
 			}
-		);		
-	}
+		);				
+	},
+	openCol: function(euri){
+//		(function(){
+			showOpenDialog("/" + euri);
+//		}).defer();
+	}	
 });
 // ===================================================================
 })();
