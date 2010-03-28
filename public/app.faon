@@ -1,7 +1,7 @@
 {
 	faonVersion: "1.0",
 	owner: "http://tacasi.vo-id.org/",
-	target: "http://github.com/tacasi/notepad/raw/master/public/",
+	target: "http://notepad.flairy.jp/",
 	top: "/index.html",
 	signature: "bde077aa7ffe3f305c06b5657798e83b86c3c16ab970d6f54b16cd233b8033fabd6d8a095098a4e7b0a4010b84dc1373bb23c92e279389f556504746a248046d",
 

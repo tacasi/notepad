@@ -4,10 +4,7 @@ Flairy.require([
 ])(function(){
 // ===================================================================
 FlairyNotepad.Menu.ResMenu = Ext.extend(Ext.menu.Menu,{
-	// デフォルトの設定の書き込み
 	constructor: function(config) {
-		
-		// 設定
 		FlairyNotepad.Menu.ResMenu.superclass.constructor.call(this, {
 			shadow: true,
 			items: [
@@ -148,7 +145,6 @@ FlairyNotepad.Menu.ResMenu = Ext.extend(Ext.menu.Menu,{
 		});
 	}
 });
-
 
 // ===================================================================
 })();

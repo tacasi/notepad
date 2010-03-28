@@ -14,29 +14,6 @@ FlairyNotepad.Application = Ext.extend(Flame.Application,{
 	onMessage: function(msg) {
 		if (msg.msg.indexOf("FM_DROP") !== -1) {
 			this.openResource(msg.data);
-/*
-			// リソースを開く
-			read_res(msg.data.replace("frs://", ""), 
-				function(data){
-								Ext.getCmp("textarea").originalValue = data;
-								Ext.getCmp("textarea").setValue(data);
-								FlairyNotepad.currentDocURI = msg.data.replace("frs://", "");
-
-								
-								// タイトルの設定
-								var furi = new Flairy.Uri("frs:///" + FlairyNotepad.currentDocURI);
-								var furis = furi.path.split("/");
-								var shortname = furis[furis.length-1];
-								app.setTitle(decodeURIComponent(shortname));
-							},
-							function(resp){
-								if(resp.status == 404) {
-									Ext.Msg.alert("失敗", "指定されたリソースは存在しません。");
-								}
-							}
-						);
-						// TODO: 404以外の対処も追加が必要。
-*/
 		}
 
 		// 実際にはここに書かずに継承さす。

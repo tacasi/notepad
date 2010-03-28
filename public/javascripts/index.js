@@ -6,9 +6,45 @@ Flairy.require([
 ])(function(){
 // ===================================================================
 
+	// アプリケーションインスタンス化
+	window.app = new FlairyNotepad.Application();
+
+	window.mp = new FlairyNotepad.Panel.MainPanel({
+		context: null
+	});
+	// Viewportを作成
+    window.viewport = new Ext.Viewport({
+    	id: 'viewport',
+		renderTo: Ext.getBody(),
+		layout: 'fit',
+		items: [mp]
+	});
+
+/*
+		var mainPanelDropTargetEl = mp.getEl().dom;
+		var mainPanelDropTarget = new Ext.dd.DropTarget(mainPanelDropTargetEl, {
+			ddGroup : "gridDDGroup",
+			notifyEnter: function(ddSource, e, data) {
+				this.body.stopFx();
+				this.body.highlight();
+				alert("zz");
+			},
+			notifyDrop : function(ddSource, e, data) {
+				alert("zz");
+			}
+		});
+*/
+	// 最終レンダリング
+	window.viewport.doLayout(false);
+	Ext.getCmp("textarea").focus();
+
+// ===================================================================
+})();
+
+
+
 // Defulat content-type
 FlairyNotepad.currentDocCType = Flairy.Mime.TEXT_PLAIN;
-
 
 function getSessionCID() {
 	return location.hash.substr(1);
@@ -71,43 +107,3 @@ function write_res(uri, data, suc, mime) {
 		}
 	});
 }
-
-	// アプリケーションインスタンス化
-	app = new FlairyNotepad.Application();
-
-		var mp = new FlairyNotepad.Panel.MainPanel({
-				context: null
-			});
-	    // Viewportを作成
-        var viewport = new Ext.Viewport({
-            id: 'viewport',
-			renderTo: Ext.getBody(),
-			layout: 'fit',
-			items: [mp]
-		});
-
-/*
-		var mainPanelDropTargetEl = mp.getEl().dom;
-		var mainPanelDropTarget = new Ext.dd.DropTarget(mainPanelDropTargetEl, {
-			ddGroup : "gridDDGroup",
-			notifyEnter: function(ddSource, e, data) {
-				this.body.stopFx();
-				this.body.highlight();
-				alert("zz");
-			},
-			notifyDrop : function(ddSource, e, data) {
-				alert("zz");
-			}
-		});
-*/
-        // 最終レンダリング
-        viewport.doLayout(false);
-		Ext.getCmp("textarea").focus();
-	
-
-//// アプリケーションインスタンス化
-//var	app = new FlairyNotepad.Application();
-
-
-// ===================================================================
-})();
