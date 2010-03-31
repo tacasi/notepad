@@ -50,10 +50,11 @@ function getSessionCID() {
 	return location.hash.substr(1);
 }
 
+
 // TODO: 将来カーネル内へ移動
 function read_res(uri, callback, failback) {
 	// ここでロックを行う
-	Flairy.Ajax.lock("/~~flairy~~/res/" + uri, {
+	Flairy.Ajax.lock("/~~flairy~~/res" + uri, {
 		success: function(resp1, opt1) {
 			FlairyNotepad.currentDocLockToken = Ext.util.JSON.decode(resp1.responseText).token;
 			FlairyNotepad.currentDocLockURI = "/~~flairy~~/res/" + uri;
@@ -82,7 +83,34 @@ function read_res(uri, callback, failback) {
 
 		},
 		failure: function(resp, opt) {
-			failback(resp);
+			if (resp.status == 405) {
+				Ext.MessageBox.alert("ロック非対応", "対象リソースシステムはロックに対応していません. そのため排他ロックは取得されませんでした.");
+				
+				// 本来の処理
+				Flairy.Ajax.get("/~~flairy~~/res" + uri, {
+					success: function(resp, opt){
+						// オープンをシェルに報告
+						if (uri.match(/^\//)) {
+							var u = "frs://" + uri;
+						}
+						else {
+							u = "frs:///" + uri;
+						}
+						(new Flairy.Msg.Useres(u, Flairy.Kernel.pid)).postToKernel();
+						
+						// 現在のコンテントタイプを保存
+						FlairyNotepad.currentDocCType = resp.getResponseHeader("Content-Type");
+						callback(resp.responseText);
+					},
+					failure: function(resp, opt){
+						failback(resp);
+					},
+					disableCaching: true
+				});
+			} else {
+				failback(resp);
+			}
+			
 		},
 		disableCaching: true
 	});	

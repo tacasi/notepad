@@ -54,6 +54,7 @@ FlairyNotepad.Panel.MainPanel = Ext.extend(Ext.Panel,{
 			}
 		},
 		failure: function(resp, opt) {
+			Ext.Msg.alert("失敗", "指定のリソース(" + u.path.replace("/~~flairy~~/res","") + ")を開けませんでした.");
 			failback(resp);
 		},
 		disableCaching: true,
@@ -67,7 +68,7 @@ FlairyNotepad.Panel.MainPanel = Ext.extend(Ext.Panel,{
 				Ext.getCmp("textarea").originalValue = data;
 				Ext.getCmp("textarea").setValue(data);
 				FlairyNotepad.currentDocURI = euri;
-				app.setTitle("メモ帳 - " + FlairyNotepad.currentDocURI);
+				app.setTitle(FlairyNotepad.currentDocURI);
 			},
 			function(resp, opt){
 				// 対象がディレクトリであった可能性を検討
