@@ -63,7 +63,7 @@ FlairyNotepad.Panel.MainPanel = Ext.extend(Ext.Panel,{
 
 	},
 	openRes: function(euri){
-		read_res(euri, 
+		read_res("/" + euri, 
 			function(data) {
 				Ext.getCmp("textarea").originalValue = data;
 				Ext.getCmp("textarea").setValue(data);
