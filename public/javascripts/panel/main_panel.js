@@ -55,7 +55,6 @@ FlairyNotepad.Panel.MainPanel = Ext.extend(Ext.Panel,{
 		},
 		failure: function(resp, opt) {
 			Ext.Msg.alert("失敗", "指定のリソース(" + u.path.replace("/~~flairy~~/res","") + ")を開けませんでした.");
-			failback(resp);
 		},
 		disableCaching: true,
 		scope: this
