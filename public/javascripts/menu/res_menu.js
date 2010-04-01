@@ -90,7 +90,7 @@ FlairyNotepad.Menu.ResMenu = Ext.extend(Ext.menu.Menu,{
 									var furi = new Flairy.Uri("frs:///" + FlairyNotepad.currentDocURI);
 									var furis = furi.path.split("/");
 									var shortname = furis[furis.length-1];
-									app.setTitle(decodeURIComponent(shortname));
+									app.setTitle(FlairyNotepad.currentDocURI);
 								}, FlairyNotepad.currentDocCType);
 								return true;	// 正常終了
 							}
@@ -105,7 +105,7 @@ FlairyNotepad.Menu.ResMenu = Ext.extend(Ext.menu.Menu,{
 								var furi = new Flairy.Uri("frs:///" + FlairyNotepad.currentDocURI);
 								var furis = furi.path.split("/");
 								var shortname = furis[furis.length-1];
-								app.setTitle(decodeURIComponent(shortname));
+								app.setTitle(FlairyNotepad.currentDocURI);
 							}, FlairyNotepad.currentDocCType);
 						}
 					}
@@ -133,7 +133,7 @@ FlairyNotepad.Menu.ResMenu = Ext.extend(Ext.menu.Menu,{
 									var furi = new Flairy.Uri("frs:///" + FlairyNotepad.currentDocURI);
 									var furis = furi.path.split("/");
 									var shortname = furis[furis.length-1];
-									app.setTitle(decodeURIComponent(shortname));
+									app.setTitle(FlairyNotepad.currentDocURI);
 								}, mime);
 								return true;	// 正常終了
 							}

@@ -58,7 +58,7 @@ FlairyNotepad.Application = Ext.extend(Flame.Application,{
 	// frs://のURIをうけとって開く一連の処理を行う
 	openResource: function(uri) {
 		var data = Ext.getCmp("textarea").getValue();
-		var euri = uri.replace("frs:///", "");
+		var euri = uri.replace("frs://", "");
 		if(!FlairyNotepad.currentDocURI && data === "") {		// 未保存かつ中身が空の場合だけ、内部に読み込む
 
 			read_res(euri, function(data){
